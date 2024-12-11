@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soviet Peoples Linux</title>
+    <link rel="stylesheet" href="./modern-normalize.min.css">
+    <link rel="stylesheet" href="./xterm.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: monospace;
+            background-color: darkred;
+            color: yellow;
+            overflow: hidden;
+        }
+
+        #terminal-container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .xterm {
+            flex-grow: 1;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="terminal-container"></div>
+
+    <script src="./xterm.js"></script>
+
+    <script>
+        // Initialize the terminal
+        const terminal = new Terminal({
+            cursorBlink: true,
+            theme: {
+                background: 'darkred',
+                foreground: 'yellow',
+                cursor: '#ff0000',
+                selectionBackground: '#555555',
+            },
+            convertEol: true,
+        });
+
+        terminal.open(document.getElementById('terminal-container'));
+
+        // Soviet-themed ASCII art
+        const asciiArt = `
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⢻⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⢤⣄⣀⣀⣀⣰⡇⠈⣧⣀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⢦⡀⠀⠀⠀⠀⢀⣠⠾⠋⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣹⠃⠀⡀⠀⢿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⣠⠔⠂⠀⠀⠀⢠⣏⣴⠞⠛⢦⣜⣧⠀⠀⠀⠀⠢⣄⡀⠀⠀⠀
+        ⠀⠀⢠⣖⡿⡋⠀⠀⠀⠀⠀⠾⠋⠀⠀⠀⠀⠉⠻⡄⠀⠀⠀⠀⢝⢿⣱⣄⠀
+        ⠀⡜⣿⣨⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠲⣤⡀⠀⠀⠀⠀⠀⠈⢳⣇⣿⢡
+        ⠀⢰⣇⣟⣵⠃⠀⠀⠀⠀⠀⠀⢀⣴⣦⡤⠀⠀⠈⠻⣷⡀⠀⠀⠀⠀⠈⣯⡻⢸⡆
+        ⠀⡆⣿⡾⡅⠀⠀⠀⠀⠀⢀⣴⣿⣿⣏⠀⠀⠀⠀⠀⠹⣿⡆⠀⠀⠀⠀⢨⢻⣾⢱
+        ⠀⣷⡘⣱⠇⠀⠀⠀⠀⠀⠀⠹⠋⠈⠻⣷⣄⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠘⣧⢋⣾
+        ⠀⡼⣷⡿⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣷⣄⠀⢀⣿⣿⠀⠀⠀⠀⢰⢻⣾⢇
+        ⠀⢳⣌⠇⣿⠀⠀⠀⠀⠀⠀⣴⢶⣤⣀⡀⠀⠈⢻⣷⣾⣿⠏⠀⠀⠀⠀⣿⠸⣡⡞
+        ⠀⠀⡿⢷⣿⡸⣄⠀⢀⣴⡾⠉⠀⠈⠛⠿⢿⣿⣿⡿⠿⣷⣄⠀⠀⢠⡇⣿⡾⢛⠀
+        ⠀⠀⠘⢦⣝⡣⢿⡦⡈⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠋⢀⣴⡿⣘⣭⡶⠃⠀
+        ⠀⠀⠀⠀⠹⣛⠿⠷⡹⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⢟⠾⠟⣛⠝⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠈⠛⡿⠿⠶⢛⣫⣤⡶⣒⡶⠶⣖⠶⣶⣍⣛⠚⠿⣟⠛⠁⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⠛⠋⢡⠞⠁⠀⠀⠈⠻⣮⠙⠛⠛⠋⠁⠀⠀⠀⠀⠀⠀
+        `;
+
+        terminal.write(`${asciiArt}\n\nWelcome to Soviet Peoples Linux v1.0! / Добро пожаловать в Советскую Народную Линукс v1.0!\nType 'help' for a list of commands. / Введите 'help' для списка команд.\n\n`);
+
+        const messages = {
+            en: {
+                unknownCommand: "Unknown command: {command}. Type 'help' for a list of commands.",
+                help: "Available commands:\n    ls      - List directories\n    cat     - Read files\n    echo    - Echo your message\n    clear   - Clear the screen\n    exit    - Exit the terminal\n    date    - Show the current time\n    whoami  - Identify yourself\n    pwd     - Show current directory\n    ru      - Switch interface to Russian\n    en      - Switch interface to English\n",
+                helpTitle: "Help Menu",
+            },
+            ru: {
+                unknownCommand: "Неизвестная команда: {command}. Введите 'help' для списка команд.",
+                help: "Доступные команды:\n    ls      - Показать директории\n    cat     - Прочитать файл\n    echo    - Отобразить ваше сообщение\n    clear   - Очистить экран\n    exit    - Выйти из терминала\n    date    - Показать текущее время\n    whoami  - Определить себя\n    pwd     - Показать текущую директорию\n    ru      - Переключить интерфейс на русский\n    en      - Переключить интерфейс на английский\n",
+                helpTitle: "Меню помощи",
+            }
+        };
+
+        let language = 'en'; // Default language is English
+        let inputBuffer = ''; // Buffer to store the user's input
+
+        const sovietCommands = {
+            help: () => messages[language].help,
+            ls: () => 'documents/  propaganda/  vodka/  comrades/',
+            cat: (args) => args[0] === 'propaganda.txt' ? 'All glory to the Soviet Peoples! / Вся слава Советским народам!' : 'File not found, comrade. / Файл не найден, товарищ.',
+            echo: (args) => args.join(' '),
+            clear: () => {
+                terminal.clear();
+                return '';
+            },
+            exit: () => {
+                return language === 'en' ? 'Exiting Soviet Peoples Linux... Goodbye, comrade.' : 'Выход из Советского Народного Линукс... Прощай, товарищ.';
+            },
+            date: () => {
+                const now = new Date();
+                return now.toLocaleString('en-US', { timeZone: 'Europe/Moscow' });
+            },
+            whoami: () => language === 'en' ? 'Comrade User' : 'Товарищ Пользователь',
+            pwd: () => '/home/motherland/user',
+            ru: () => {
+                language = 'ru';
+                return 'Interface switched to Russian. / Интерфейс переключен на русский.';
+            },
+            en: () => {
+                language = 'en';
+                return 'Interface switched to English. / Интерфейс переключен на английский.';
+            }
+        };
+
+        // Event listener for user input
+        terminal.onData((data) => {
+            if (data === '\r') { // Enter key pressed
+                const [command, ...args] = inputBuffer.split(' ');
+                terminal.write('\n'); // Ensure new line before output
+                if (sovietCommands[command]) {
+                    terminal.write(sovietCommands[command](args) + '\n');
+                } else {
+                    terminal.write(messages[language].unknownCommand.replace('{command}', command) + '\n');
+                }
+                terminal.write('☭');
+                inputBuffer = ''; // Clear the input buffer
+            } else if (data === '\u007F') { // Backspace
+                inputBuffer = inputBuffer.slice(0, -1); // Remove last character
+                terminal.write('\b \b');
+            } else {
+                inputBuffer += data; // Add the input character to the buffer
+                terminal.write(data);
+            }
+        });
+
+        terminal.write('☭'); // Prompt the user for input
+
+    </script>
+
+</body>
+</html>
