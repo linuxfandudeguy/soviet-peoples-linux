@@ -56,6 +56,28 @@
 
         terminal.open(document.getElementById('terminal-container'));
 
+
+function resizeTerminal() {
+    const container = document.getElementById('terminal-container');
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    // Approximate character size (may need tweaking for your font/size)
+    const charWidth = 8;
+    const charHeight = 18;
+
+    const cols = Math.floor(width / charWidth);
+    const rows = Math.floor(height / charHeight);
+
+    terminal.resize(cols, rows);
+}
+
+// Resize immediately
+resizeTerminal();
+
+// And on window resize
+window.addEventListener('resize', resizeTerminal);
+
         // Soviet-themed ASCII art
         const asciiArt = `
         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
