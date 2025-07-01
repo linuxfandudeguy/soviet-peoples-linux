@@ -135,7 +135,7 @@ const sovietCommands = {
                 } else {
                     terminal.write(messages[language].unknownCommand.replace('{command}', command) + '\n');
                 }
-                terminal.write('☭');
+                terminal.write('\u005B\u262D\u005D\u007E');
                 inputBuffer = ''; // Clear the input buffer
             } else if (data === '\u007F') { // Backspace
                 inputBuffer = inputBuffer.slice(0, -1); // Remove last character
@@ -146,7 +146,7 @@ const sovietCommands = {
             }
         });
 
-      terminal.write('\u005B\u262D\u005D\u007E ');
+      terminal.write('\u005B\u262D\u005D\u007E');
 
     </script>
 
