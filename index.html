@@ -95,34 +95,34 @@
 
         let language = 'en'; // Default language is English
         let inputBuffer = ''; // Buffer to store the user's input
+const sovietCommands = {
+    // existing commands...
+    help: () => messages[language].help,
+    ls: () => 'documents/  propaganda/  vodka/  comrades/',
+    cat: (args) => args[0] === 'propaganda.txt' ? 'All glory to the Soviet Peoples! / Вся слава Советским народам!' : 'File not found, comrade. / Файл не найден, товарищ.',
+    echo: (args) => args.join(' '),
+    clear: () => { terminal.clear(); return ''; },
+    exit: () => language === 'en' ? 'Exiting Soviet Peoples Linux... Goodbye, comrade.' : 'Выход из Советского Народного Линукс... Прощай, товарищ.',
+    date: () => new Date().toLocaleString('en-US', { timeZone: 'Europe/Moscow' }),
+    whoami: () => language === 'en' ? 'Comrade User' : 'Товарищ Пользователь',
+    pwd: () => '/home/motherland/user',
+    ru: () => { language = 'ru'; return 'Interface switched to Russian. / Интерфейс переключен на русский.'; },
+    en: () => { language = 'en'; return 'Interface switched to English. / Интерфейс переключен на английский.'; },
 
-        const sovietCommands = {
-            help: () => messages[language].help,
-            ls: () => 'documents/  propaganda/  vodka/  comrades/',
-            cat: (args) => args[0] === 'propaganda.txt' ? 'All glory to the Soviet Peoples! / Вся слава Советским народам!' : 'File not found, comrade. / Файл не найден, товарищ.',
-            echo: (args) => args.join(' '),
-            clear: () => {
-                terminal.clear();
-                return '';
-            },
-            exit: () => {
-                return language === 'en' ? 'Exiting Soviet Peoples Linux... Goodbye, comrade.' : 'Выход из Советского Народного Линукс... Прощай, товарищ.';
-            },
-            date: () => {
-                const now = new Date();
-                return now.toLocaleString('en-US', { timeZone: 'Europe/Moscow' });
-            },
-            whoami: () => language === 'en' ? 'Comrade User' : 'Товарищ Пользователь',
-            pwd: () => '/home/motherland/user',
-            ru: () => {
-                language = 'ru';
-                return 'Interface switched to Russian. / Интерфейс переключен на русский.';
-            },
-            en: () => {
-                language = 'en';
-                return 'Interface switched to English. / Интерфейс переключен на английский.';
-            }
-        };
+    // 🚀 New fun commands
+    fortune: () => [
+        "From each according to his ability, to each according to his needs.",
+        "The Motherland is watching you, comrade.",
+        "He who does not work shall not eat.",
+        "Glory to the Soviet tractor!"
+    ][Math.floor(Math.random() * 4)],
+    uname: () => 'Soviet Peoples Linux v1.0 (Motherland Kernel) x86_СССР',
+    history: () => '1. ls\n2. cat propaganda.txt\n3. echo Слава\n4. whoami\n5. date',
+    sudo: () => 'Permission denied, comrade. Root is for the Party.',
+    ping: () => 'Pinging Moscow... Success!',
+    reboot: () => 'System will now reboot. Long live the Soviet Peoples!',
+    man: () => 'Manuals are classified by the Party.'
+};
 
         // Event listener for user input
         terminal.onData((data) => {
